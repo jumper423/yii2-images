@@ -4,8 +4,8 @@ use yii\codeception\TestCase;
 use Codeception\Util\Debug;
 use yii\codeception\DbTestCase;
 use Codeception\Util\Stub;
-use rico\yii2images\behaviors\ImageBehave;
-use rico\yii2images\models\Image;
+use jumper423\yii2images\behaviors\ImageBehave;
+use jumper423\yii2images\models\Image;
 use yii\db\Connection;
 use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
@@ -38,8 +38,8 @@ class ImageTest extends TestCase
                 ]
             ],
             'modules' => [
-                'ricoStore' => [
-                    'class' => 'rico\yii2images\Module',
+                'jumper423Store' => [
+                    'class' => 'jumper423\yii2images\Module',
 
                 ],
             ],
@@ -66,7 +66,7 @@ class ImageTest extends TestCase
 
         /*vfsStream::setup('root');
         vfsStream::setup('root/Cache');*/
-        $module = Yii::$app->getModule('ricoStore');
+        $module = Yii::$app->getModule('jumper423Store');
         //$module->imagesStorePath = vfsStream::url('root/Store');
         //$module->imagesCachePath = vfsStream::url('root/Cache');
         $module->imagesStorePath = Yii::getAlias('@app').'/tests/unit/data/imgStore';
@@ -98,7 +98,7 @@ class ImageTest extends TestCase
 
         $ext = pathinfo($img->getPathToOrigin(), PATHINFO_EXTENSION);
 
-        $baseUrl = '/app/web/index-test.php/ricoStore/images/image-by-item-and-alias?item=ActiveRecordImage1&dirtyAlias=';
+        $baseUrl = '/app/web/index-test.php/jumper423Store/images/image-by-item-and-alias?item=ActiveRecordImage1&dirtyAlias=';
         $this->assertEquals($img->getUrl(), $baseUrl.$img->urlAlias.'.'.$ext);
 
         $this->assertEquals($img->getUrl('x100'), $baseUrl.$img->urlAlias.'_x100.'.$ext);

@@ -6,12 +6,12 @@
  * Time: 15:35
  */
 
-namespace rico\yii2images\controllers;
+namespace jumper423\yii2images\controllers;
 
 use yii\web\Controller;
 use yii;
-use rico\yii2images\models\Image;
-use \rico\yii2images\ModuleTrait;
+use jumper423\yii2images\models\Image;
+use \jumper423\yii2images\ModuleTrait;
 
 class ImagesController extends Controller
 {

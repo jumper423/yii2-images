@@ -1,6 +1,6 @@
 <?php
 
-namespace rico\yii2images\controllers;
+namespace jumper423\yii2images\controllers;
 
 use yii\web\Controller;
 

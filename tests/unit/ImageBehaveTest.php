@@ -5,13 +5,13 @@ use Yii;
 use yii\codeception\DbTestCase;
 use yii\codeception\TestCase;
 use Codeception\Util\Stub;
-use rico\yii2images\behaviors\ImageBehave;
-use rico\yii2images\models\Image;
+use jumper423\yii2images\behaviors\ImageBehave;
+use jumper423\yii2images\models\Image;
 use yii\db\Connection;
 use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
 use org\bovigo\vfs\vfsStream;
-use rico\yii2images\controllers\ImagesController;
+use jumper423\yii2images\controllers\ImagesController;
 
 use Codeception\Util\Debug;
 
@@ -52,7 +52,7 @@ class ImageBehaveTest extends DbTestCase
             ],
             'modules' => [
                 'yii2images' => [
-                    'class' => 'rico\yii2images\Module',
+                    'class' => 'jumper423\yii2images\Module',
 
                 ],
             ],
@@ -169,7 +169,7 @@ class ImageBehaveTest extends DbTestCase
         //Check one image
         $this->model->attachImage(__DIR__ . '/data/testPicture.jpg');
         $image = $this->model->getImage();
-        $this->assertTrue(get_class($image) == 'rico\yii2images\models\Image');
+        $this->assertTrue(get_class($image) == 'jumper423\yii2images\models\Image');
 
         //Check several images
         $this->model->attachImage(__DIR__ . '/data/testPicture.jpg');
@@ -177,7 +177,7 @@ class ImageBehaveTest extends DbTestCase
         $this->model->attachImage(__DIR__ . '/data/testPicture.jpg');
 
         $image = $this->model->getImage();
-        $this->assertTrue(get_class($image) == 'rico\yii2images\models\Image');
+        $this->assertTrue(get_class($image) == 'jumper423\yii2images\models\Image');
 
         //Check is it first image main
         $this->assertTrue($image->isMain == 1);
