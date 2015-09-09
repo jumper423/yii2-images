@@ -36,7 +36,7 @@ class PlaceHolder extends Image
 
     public function __construct()
     {
-        $this->filePath =basename(Yii::getAlias($this->getModule()->placeHolderPath)) ;
+        $this->filePath = basename(Yii::getAlias($this->getModule()->placeHolderPath));
     }
 
     public function getPathToOrigin()
@@ -49,10 +49,13 @@ class PlaceHolder extends Image
         return $url;
     }
 
-    protected  function getSubDur(){
+    protected function getSubDur()
+    {
         return 'placeHolder';
     }
-    public function setMain($isMain = true){
+
+    public function setMain($isMain = true)
+    {
         throw new yii\base\Exception('You must not set placeHolder as main image!!!');
     }
 

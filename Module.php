@@ -2,10 +2,9 @@
 
 namespace jumper423\yii2images;
 
-
+use jumper423\yii2images\models\Image;
 use jumper423\yii2images\models\PlaceHolder;
 use yii;
-use jumper423\yii2images\models\Image;
 
 class Module extends \yii\base\Module
 {
@@ -23,7 +22,6 @@ class Module extends \yii\base\Module
 
     public $className;
 
-
     public function getImage($item, $dirtyAlias)
     {
         //Get params
@@ -35,9 +33,8 @@ class Module extends \yii\base\Module
         $itemId = preg_replace('/[^0-9]+/', '', $item);
         $modelName = preg_replace('/[0-9]+/', '', $item);
 
-
         //Lets get image
-        if(empty($this->className)) {
+        if (empty($this->className)) {
             $imageQuery = Image::find();
         } else {
             $class = $this->className;
@@ -56,7 +53,7 @@ class Module extends \yii\base\Module
                          ':alias' => $alias
                      ])*/
             ->one();
-        if(!$image){
+        if (!$image) {
             return $this->getPlaceHolder();
         }
 
@@ -77,12 +74,9 @@ class Module extends \yii\base\Module
 
     public function getModelSubDir($model)
     {
-     
         $modelName = $this->getShortClass($model);
-        $modelDir = \yii\helpers\Inflector::pluralize($modelName).'/'. $modelName . $model->id;
+        $modelDir = \yii\helpers\Inflector::pluralize($modelName) . '/' . $modelName . $model->id;
         return $modelDir;
-
-     
     }
 
 
@@ -96,7 +90,6 @@ class Module extends \yii\base\Module
 
         return $className;
     }
-
 
     /**
      *
@@ -158,7 +151,6 @@ class Module extends \yii\base\Module
             $size = null;
         }
 
-
         return ['alias' => $alias, 'size' => $size];
     }
 
@@ -178,11 +170,12 @@ class Module extends \yii\base\Module
         // custom initialization code goes here
     }
 
-    public function getPlaceHolder(){
+    public function getPlaceHolder()
+    {
 
-        if($this->placeHolderPath){
+        if ($this->placeHolderPath) {
             return new PlaceHolder();
-        }else{
+        } else {
             return null;
         }
     }

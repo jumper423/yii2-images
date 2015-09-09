@@ -2,10 +2,9 @@
 
 namespace jumper423\yii2images\controllers;
 
-use yii\web\Controller;
+use jumper423\yii2images\ModuleTrait;
 use yii;
-use jumper423\yii2images\models\Image;
-use \jumper423\yii2images\ModuleTrait;
+use yii\web\Controller;
 
 class DefaultController extends Controller
 {
@@ -19,10 +18,10 @@ class DefaultController extends Controller
      * @param $alias
      *
      */
-    public function actionIndex($item='', $dirtyAlias)
+    public function actionIndex($item = '', $dirtyAlias)
     {
         $dotParts = explode('.', $dirtyAlias);
-        if(!isset($dotParts[1])){
+        if (!isset($dotParts[1])) {
             throw new \yii\web\HttpException(404, 'Image must have extension');
         }
         $dirtyAlias = $dotParts[0];
@@ -31,16 +30,16 @@ class DefaultController extends Controller
         $alias = isset(explode('_', $dirtyAlias)[0]) ? explode('_', $dirtyAlias)[0] : false;
         $image = $this->getModule()->getImage($item, $alias);
 
-        if($image->getExtension() != $dotParts[1]){
+        if ($image->getExtension() != $dotParts[1]) {
             throw new \yii\web\HttpException(404, 'Image not found (extenstion)');
         }
 
-        if($image){
+        if ($image) {
             $response = Yii::$app->getResponse();
             $response->headers->set('Content-Type', 'image/jpeg');
             $response->format = yii\web\Response::FORMAT_RAW;
             return $image->getContent($size);
-        }else{
+        } else {
             throw new \yii\web\HttpException(404, 'There is no images');
         }
     }

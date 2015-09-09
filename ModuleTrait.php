@@ -8,7 +8,6 @@
 
 namespace jumper423\yii2images;
 
-
 use yii\base\Exception;
 
 trait ModuleTrait

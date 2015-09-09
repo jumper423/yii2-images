@@ -8,21 +8,16 @@
 
 namespace jumper423\yii2images\behaviors;
 
-
+use jumper423\yii2images\models;
 use jumper423\yii2images\models\Image;
-
+use jumper423\yii2images\ModuleTrait;
 use yii;
 use yii\base\Behavior;
 use yii\db\ActiveRecord;
-use jumper423\yii2images\models;
 use yii\helpers\BaseFileHelper;
-use \jumper423\yii2images\ModuleTrait;
-
-
 
 class ImageBehave extends Behavior
 {
-
     use ModuleTrait;
     public $createAliasMethod = false;
 
@@ -41,11 +36,11 @@ class ImageBehave extends Behavior
      */
     public function attachImage($absolutePath, $isMain = false)
     {
-        if(!preg_match('#http#', $absolutePath)){
+        if (!preg_match('#http#', $absolutePath)) {
             if (!file_exists($absolutePath)) {
-                throw new \Exception('File not exist! :'.$absolutePath);
+                throw new \Exception('File not exist! :' . $absolutePath);
             }
-        }else{
+        } else {
             //nothing
         }
 
@@ -86,7 +81,7 @@ class ImageBehave extends Behavior
 
         $image->urlAlias = $this->getAlias($image);
 
-        if(!$image->save()){
+        if (!$image->save()) {
             return false;
         }
 
@@ -100,13 +95,13 @@ class ImageBehave extends Behavior
         $img = $this->owner->getImage();
 
         //If main image not exists
-        if(
-            is_object($img) && get_class($img)=='jumper423\yii2images\models\PlaceHolder'
+        if (
+            is_object($img) && get_class($img) == 'jumper423\yii2images\models\PlaceHolder'
             or
             $img == null
             or
             $isMain
-        ){
+        ) {
             $this->setMainImage($image);
         }
 
@@ -189,7 +184,7 @@ class ImageBehave extends Behavior
         $imageQuery->orderBy(['isMain' => SORT_DESC, 'id' => SORT_ASC]);
 
         $imageRecords = $imageQuery->all();
-        if(!$imageRecords){
+        if (!$imageRecords) {
             return [$this->getModule()->getPlaceHolder()];
         }
         return $imageRecords;
@@ -213,7 +208,7 @@ class ImageBehave extends Behavior
         $imageQuery->orderBy(['isMain' => SORT_DESC, 'id' => SORT_ASC]);
 
         $img = $imageQuery->one();
-        if(!$img){
+        if (!$img) {
             return $this->getModule()->getPlaceHolder();
         }
 
@@ -270,7 +265,6 @@ class ImageBehave extends Behavior
     }
 
 
-
     /** Make string part of image's url
      * @return string
      * @throws \Exception
@@ -303,8 +297,6 @@ class ImageBehave extends Behavior
 
         return $aliasWords . '-' . intval($imagesCount + 1);
     }
-
-
 
 
 }
