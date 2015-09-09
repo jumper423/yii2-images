@@ -24,7 +24,7 @@ trait ModuleTrait
     protected function getModule()
     {
         if ($this->_module == null) {
-            $this->_module = \Yii::$app->getModule('yii2images');
+            $this->_module = \Yii::$app->getModule('images');
         }
 
         if(!$this->_module){
